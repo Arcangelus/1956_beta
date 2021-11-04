@@ -63,19 +63,16 @@ focus_tree = {
 		x = 9
 		y = 1
 		bypass = {
-		NOT = { has_idea = bra_1930 }
+			NOT = { has_idea = bra_1930 }
 		}
 		relative_position_id = bra_a_voz_do_brasil
 		cost = 5
 		completion_reward = {
 			if = {
-				limit = {
-					has_idea = bra_1930
-				}
-			swap_ideas = { remove_idea = bra_1930 add_idea = bra_1930_2 }
+				limit = { has_idea = bra_1930 }
+				swap_ideas = { remove_idea = bra_1930 add_idea = bra_1930_2 }
 			}
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT }
 	}
 	focus = {
 		id = bra_consegnac
@@ -89,7 +86,6 @@ focus_tree = {
 			army_experience = 10
 			add_ideas = bra_consegnac_idea
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT }
 	}
 	focus = {
 		id = bra_polaca
@@ -166,7 +162,7 @@ focus_tree = {
 		available = {
 			AND = {
 				OR = {
-					has_country_leader = { name = "Getúlio Vargas" ruling_only = yes }
+					has_government = neutrality
 					has_government = communism
 				}
 				
@@ -179,10 +175,10 @@ focus_tree = {
 	}
 	focus = {
 		id = bra_2_prestes_column
-		icon = GFX_goal_generic_uprising
+		icon = GFX_goal_BRA_second_communist_putsch
 		prerequisite = { focus = bra_populism }
 		mutually_exclusive = { focus = bra_quereismo }
-		available = { has_country_leader = { name = "Getúlio Vargas" ruling_only = yes } }
+		available = { has_government = neutrality }
 		x = -1
 		y = 1
 		relative_position_id = bra_populism
@@ -281,7 +277,7 @@ focus_tree = {
 			}
 		}
 		cost = 5
-		available = { has_country_leader = { name = "Getúlio Vargas" ruling_only = yes } }
+		available = { has_government = neutrality }
 		completion_reward = {
 			country_event = { days = 1 id = bra.14 }
 		}
@@ -329,7 +325,7 @@ focus_tree = {
 		icon = GFX_goal_generic_propaganda
 		prerequisite = {  focus = bra_populism }
 		mutually_exclusive = { focus = bra_2_prestes_column }
-		available = { has_country_leader = { name = "Getúlio Vargas" ruling_only = yes } }
+		available = { has_government = neutrality }
 		relative_position_id = bra_populism
 		x = 1
 		y = 1
@@ -377,10 +373,10 @@ focus_tree = {
 	}
 	focus = {
 		id = bra_regionalism
-		icon = GFX_goal_generic_freedom
+		icon = GFX_goal_support_democracy
 		prerequisite = { focus = bra_federalism }
 		mutually_exclusive = { focus = bra_brazilian_action }
-		available = { has_country_leader = { name = "Getúlio Vargas" ruling_only = yes } }
+		available = { has_government = neutrality }
 		relative_position_id = bra_federalism
 		x = -1
 		y = 1
@@ -429,18 +425,18 @@ focus_tree = {
 		relative_position_id = bra_tecnocratic_reform
 		cost = 10
 		completion_reward = {
-			if = {
-				limit = {
-					has_idea = bra_1930_2
-				}
-				remove_ideas = bra_1930_2
-			}
-			if = {
-				limit = {
-					has_idea = bra_1930
-				}
-				remove_ideas = bra_1930
-			}
+				if = {
+						limit = {
+								has_idea = bra_1930_2
+								}
+					remove_ideas = bra_1930_2
+					}
+				if = {
+						limit = {
+								has_idea = bra_1930
+								}
+					remove_ideas = bra_1930
+					}
 			hidden_effect = {
 					if = { limit = { BRA = { has_government = fascism } }
 					hidden_effect = {
@@ -648,7 +644,7 @@ focus_tree = {
 
 	focus = {
 		id = bra_tiro_de_guerra
-		icon = GFX_goal_generic_democratic_army
+		icon = GFX_goal_generic_military_sphere
 		prerequisite = { focus = bra_patriotic_effort focus = bra_tecnocratic_reform focus = bra_monarquia_focus focus = bra_vital_espace focus = bra_cosmopolitanism }
 		x = -1
 		y = 1
@@ -688,7 +684,7 @@ focus_tree = {
 				limit = { has_government = communism }
 				create_field_marshal = {
 					name = "Luís Carlos Prestes"
-					picture = "gfx/leaders/South America/Portrait_South_America_Generic_land_1.dds"
+					picture = "gfx/leaders/BRA/r56_Portrait_BRA_Field_Marshall_Prestes.dds"
 					traits = { politically_connected }
 					skill = 3
 					
@@ -710,7 +706,6 @@ focus_tree = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT }
 	}
 
 	focus = {
@@ -737,6 +732,7 @@ focus_tree = {
 		cost = 5
 		
 		completion_reward = {
+
 			add_tech_bonus = {
 				name = industrial_bonus
 				bonus = 0.5
@@ -746,7 +742,6 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
-
 	focus = {
 		id = bra_federal_institutes
 		icon = GFX_focus_generic_cryptologic_bomb
@@ -827,7 +822,6 @@ focus_tree = {
 		cost = 10
 		
 		completion_reward = {
-			unlock_decision_tooltip = BRA_fight_rural_elites
 			add_ideas = bra_iti_idea
 			add_tech_bonus = {
 				name = industrial_bonus
@@ -882,11 +876,11 @@ focus_tree = {
 	}
 focus = {
 		id = bra_nuclear_research_bureau
-		icon = GFX_goal_generic_nuclear_energy
+		icon = GFX_focus_wonderweapons
 		prerequisite = { focus = bra_secret_research }
 		available = {
 			is_major = yes
-			num_of_factories > 80
+			num_of_factories > 100
 		}
 		relative_position_id = bra_secret_research
 		x = 0
@@ -894,12 +888,12 @@ focus = {
 		cost = 15
 		completion_reward = {
 			add_tech_bonus = {
-				name = UK_secret_focus
+				name = bra_1_nuclear_bonus
 				ahead_reduction = 1
 				category = nuclear
 			}
 			add_tech_bonus = {
-				name = UK_secret_focus
+				name = bra_2_nuclear_bonus
 				bonus = 3
 				uses = 1
 				category = nuclear
@@ -919,8 +913,8 @@ focus = {
 		cost = 10
 		completion_reward = {
 			497 = { add_extra_state_shared_building_slots = 2 }
-			497 = { add_building_construction = { type = naval_base province = 12853 level = 3 instant_build = yes } }
-			497 = { add_building_construction = { type = dockyard level = 3 instant_build = yes } }
+			497 = { add_building_construction = { type = naval_base province = 12853 level = 2 instant_build = yes } }
+			497 = { add_building_construction = { type = dockyard level = 1 instant_build = yes } }
 			
 			if = {
 				limit = {
@@ -950,7 +944,7 @@ focus = {
 		completion_reward = {
 		navy_experience = 10
 			add_tech_bonus = {
-				name = naval_doctrine_tech_bonus_name
+				name = BRA_naval_doctrine
 				bonus = 1
 				uses = 1
 				category = naval_doctrine
@@ -979,13 +973,13 @@ focus = {
 				coordination_skill = 1
 			}
 			add_tech_bonus = {
-				name = naval_doctrine_tech_bonus_name
+				name = BRA_naval_doctrine
 				bonus = 1
 				uses = 1
 				category = naval_doctrine
 			}
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_submarinos
@@ -996,25 +990,13 @@ focus = {
 		y = 1
 		cost = 10
 		completion_reward = {
-			navy_experience = 10
+		navy_experience = 10
 			add_tech_bonus = {
-				name = ss_bonus
+				name = sub_bonus
 				bonus = 1
 				uses = 1
 				category = ss_tech
 			}
-			if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				add_tech_bonus = {
-					name = SPR_navy_modernization
-					bonus = 1
-					uses = 1
-					category = asw_tech
-					category = torpedo_equipment
-				}				
-			}			
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
@@ -1037,26 +1019,6 @@ focus = {
 				category = bc_tech
 				category = cv_tech
 			}
-			if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				add_tech_bonus = {
-					name = SPR_navy_modernization
-					bonus = 1
-					uses = 1
-					category = naval_gunnery_tech
-					category = naval_shell_tech
-				}
-
-				add_tech_bonus = {
-					name = SPR_navy_modernization
-					bonus = 1
-					uses = 1
-					category = asw_tech
-					category = torpedo_equipment
-				}
-			}
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
@@ -1071,40 +1033,31 @@ focus = {
 		available = { 498  =  { is_owned_by = BRA } }
 		completion_reward = {
 			498 = { add_extra_state_shared_building_slots = 2 }
-			498 = { add_building_construction = { type = naval_base province = 10933 level = 3 instant_build = yes } }
-			498 = { add_building_construction = { type = dockyard level = 3 instant_build = yes } }
+			498 = { add_building_construction = { type = naval_base province = 10933 level = 2 instant_build = yes } }
+			498 = { add_building_construction = { type = dockyard level = 1 instant_build = yes } }
 		}
 	}
 ###-----> Army Branch <><> <><> <><> <><>
 	focus = {
 		id = bra_ana_guerra_civil
-		icon = GFX_goal_constitution
+		icon = GFX_goal_consitution
 		prerequisite = { focus = bra_consegnac }
 		relative_position_id = bra_consegnac
 		x = 3
 		y = 1
 		cost = 10
-		available = {
-
-		}
 		completion_reward = {
 			army_experience = 15
 			add_tech_bonus = {
 				name = land_doc_bonus
-				bonus = 0.75
+				bonus = 0.5
 				uses = 1
 				category = land_doctrine
 			}
-			if = {
-				limit = {
-					has_war = no
-				}
-				custom_effect_tooltip =  bra_tropas_1932_tooltip
-				hidden_effect = {
-					load_oob = BRA_cohen
-				}				
+			hidden_effect = {
+				load_oob = BRA_cohen
 			}
-
+			custom_effect_tooltip =  bra_tropas_1932_tooltip
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER }
 	}
@@ -1119,17 +1072,10 @@ focus = {
 		completion_reward = {
 			army_experience = 10
 			every_army_leader = {
-				add_planning = 1
+			add_planning = 1
 			}
 			swap_ideas = { remove_idea = bra_consegnac_idea add_idea = bra_consegnac_idea_2 }
-			add_tech_bonus = {
-				name = special_forces_bonus
-				bonus = 1.0
-				uses = 1
-				category = r56_special_forces_training_tech 
-			}			
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT }
 	}
 	focus = {
 		id = bra_ana_mineira
@@ -1150,7 +1096,7 @@ focus = {
 				category = land_doctrine
 			}
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_equip_ind
@@ -1175,7 +1121,7 @@ focus = {
 			}
 			swap_ideas = { remove_idea = bra_ana_mineira_idea add_idea = bra_ana_mineira_idea_2 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_art
@@ -1200,7 +1146,7 @@ focus = {
 			}
 			swap_ideas = { remove_idea = bra_ana_mineira_idea_2 add_idea = bra_ana_mineira_idea_3 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_barragem
@@ -1219,7 +1165,7 @@ focus = {
 			}
 		swap_ideas = { remove_idea = bra_ana_mineira_idea_3 add_idea = bra_ana_mineira_idea_4 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_ana_paulista
@@ -1239,7 +1185,7 @@ focus = {
 				category = land_doctrine
 			}
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_mot
@@ -1264,7 +1210,7 @@ focus = {
 			}
 			swap_ideas = { remove_idea = bra_ana_paulista_idea add_idea = bra_ana_paulista_idea_2 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_mec
@@ -1289,7 +1235,7 @@ focus = {
 			}
 			swap_ideas = { remove_idea = bra_ana_paulista_idea_2  add_idea = bra_ana_paulista_idea_3 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
 	focus = {
 		id = bra_blitz
@@ -1308,8 +1254,9 @@ focus = {
 			}
 			swap_ideas = { remove_idea = bra_ana_paulista_idea_3  add_idea = bra_ana_paulista_idea_4 }
 		}
-		search_filters = { FOCUS_FILTER_MILITARY_IMPROVEMENT FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 	}
+
 ###-----> Air Branch <><> <><> <><> <><>
 	focus = {
 		id = bra_modernizacao_aerea
@@ -1369,7 +1316,7 @@ focus = {
 				}
 			}
 			add_tech_bonus = {
-				name = air_doctrine_tech_bonus_name
+				name = BRA_air_doctrine
 				bonus = 1
 				uses = 1
 				category = air_doctrine
@@ -1403,7 +1350,8 @@ focus = {
 				name = "Eduardo"
 				surname = "Gomes"
 				callsign = "O Brigadeiro"
-				type = bomber_good_range
+				type = bomber_genius
+				is_female = no
 			}
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
@@ -1456,7 +1404,7 @@ focus = {
 ###-----> Industry Branch <><> <><> <><> <><>
 	focus = {
 		id = bra_CTEF_CLT
-		icon = GFX_goal_generic_economics_reform
+		icon = GFX_goal_generic_positive_trade_relations
 		prerequisite = { focus = bra_a_voz_do_brasil }
 		relative_position_id = bra_a_voz_do_brasil
 		x = -10
@@ -1618,7 +1566,7 @@ focus = {
 		relative_position_id = bra_eng_mart
 		x = 0
 		y = 1
-		cost = 5
+		cost = 10
 		completion_reward = {
 			swap_ideas = { remove_idea = bra_eficiencia_2 add_idea = bra_eficiencia_3 }
 			
@@ -1681,7 +1629,7 @@ focus = {
 		id = bra_mod_mad_mamo
 		prerequisite = { focus = bra_obras_exterior }
 		relative_position_id = bra_obras_exterior
-		icon = GFX_goal_generic_road2
+		icon = GFX_goal_COG_Jungle_Railroad
 		x = 0
 		y = 1
 		cost = 10
@@ -1724,14 +1672,13 @@ focus = {
 	}
 	focus = {
 		id = bra_mod_soroc
-		icon = GFX_goal_generic_road
+		icon = GFX_goal_generic_construct_infrastructure
 		prerequisite = { focus = bra_mod_mad_mamo }
 		relative_position_id = bra_mod_mad_mamo
 		x = 0
 		y = 1
 		cost = 10
 		completion_reward = {
-			unlock_decision_tooltip = BRA_fight_rural_elites
 			500 = {
 				add_building_construction = {
 					type = infrastructure
@@ -1842,7 +1789,7 @@ focus = {
 	}
 	focus = {
 		id = bra_cmvrg
-		icon = GFX_goal_polish_wartime_industry
+		icon = GFX_goal_generic_construct_mil_factory
 		prerequisite = { focus = bra_elet_2 focus = bra_fiesp }
 		relative_position_id = bra_fiesp
 		x = 1
@@ -1872,6 +1819,7 @@ focus = {
 					days = 5
 				}
 			}
+			
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
@@ -1929,7 +1877,7 @@ focus = {
 					instant_build = yes
 				}
 			}
-			if = {
+		if = {
 				limit = {
 					has_idea = bra_industrial_elite
 				}
@@ -1949,12 +1897,12 @@ focus = {
 	}
 	focus = {
 		id = bra_itabira
-		icon = GFX_goal_generic_light_industry
+		icon = GFX_goal_generic_construction2
 		prerequisite = { focus = bra_CTEF_CLT }
 		relative_position_id = bra_CTEF_CLT
 		x = -4
 		y = 1
-		cost = 5
+		cost = 10
 		completion_reward = {
 			add_resource = { type = steel amount = 4 state = 496 }
 			
@@ -1974,7 +1922,7 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STEEL}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
 	focus = {
 		id = bra_lobato
@@ -2006,9 +1954,8 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_OIL }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
-
 	focus = {
 		id = bra_salte
 		icon = GFX_goal_generic_national_unity
@@ -2034,7 +1981,7 @@ focus = {
 			has_tech = excavation1
 		}
 		completion_reward = {
-			add_resource = { type = steel amount = 6 state = 496 }
+			add_resource = { type = steel amount = 4 state = 496 }
 			
 			if = {
 				limit = {
@@ -2052,7 +1999,7 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STEEL}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
 	focus = {
 		id = bra_salvador
@@ -2084,7 +2031,7 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_OIL }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
 	
 	focus = {
@@ -2096,8 +2043,7 @@ focus = {
 		y = 1
 		cost = 10
 		completion_reward = {
-			unlock_decision_tooltip = BRA_fight_rural_elites
-			add_ideas = { bra_bb_idea }
+		add_ideas = { bra_bb_idea }
 		}
 	}
 	
@@ -2137,7 +2083,7 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_CHROMIUM FOCUS_FILTER_ALUMINIUM FOCUS_FILTER_TUNGSTEN }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
 	
 	focus = {
@@ -2161,7 +2107,8 @@ focus = {
 				effect_tooltip = {
 					random_owned_controlled_state = {
 						prioritize = { 502 }
-						limit = { }
+						limit = {
+						}
 						add_extra_state_shared_building_slots = 1
 						add_building_construction = {
 							type = synthetic_refinery
@@ -2173,7 +2120,7 @@ focus = {
 				}
 				else = {
 					add_tech_bonus = {
-						name = industrial_bonus
+						name = ETH_oil_rig_bonus
 						ahead_reduction = 1
 						bonus = 1
 						uses = 1
@@ -2182,7 +2129,8 @@ focus = {
 					effect_tooltip = {
 					random_owned_controlled_state = {
 						prioritize = { 502 }
-						limit = { }
+						limit = {
+						}
 						add_extra_state_shared_building_slots = 1
 						add_building_construction = {
 							type = synthetic_refinery
@@ -2210,22 +2158,20 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY  FOCUS_FILTER_OIL }
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
 	}
 	
 	focus = {
 		id = bra_bndes
-		icon = GFX_goal_treaty_peoples
+		icon = GFX_goal_generic_positive_trade_relations
 		prerequisite = { focus = bra_vale }
 		prerequisite = { focus = bra_bb }
 		relative_position_id = bra_bb
 		x = 1
 		y = 1
 		available = {
-			AND = {
-				has_completed_focus = bra_fiesp
-				has_idea = bra_eficiencia_4
-			}
+			has_completed_focus = bra_fiesp
+			has_idea = bra_eficiencia_4
 		}
 		cost = 10
 		completion_reward = {
@@ -2313,14 +2259,14 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
-
+	
 	focus = {
 		id = bra_diplomacia
-		icon = GFX_goal_generic_major_diplo
+		icon = GFX_goal_generic_intelligence_exchange
 		x = 21
 		y = 0
 		ai_will_do = {
-			factor = 26
+			factor = 1
 		}
 		available = {
 			OR = {
@@ -2336,12 +2282,13 @@ focus = {
 			custom_effect_tooltip = bra_diplomacia_tooltip
 		}
 	}
-
+	
 	focus = {
 		id = bra_amigo_eua
 		icon = GFX_goal_generic_improve_relations
 		prerequisite = { focus = bra_diplomacia }
 		mutually_exclusive = { focus = bra_inimigo_eua }
+		ai_will_do = { factor = 2 }
 		available = { OR = { has_government = neutrality has_government = democratic } }
 		relative_position_id = bra_diplomacia
 		bypass = {
@@ -2350,15 +2297,14 @@ focus = {
 		x = -2
 		y = 1
 		cost = 5
-		ai_will_do = {
-			factor = 5
-		}		
+		
 		completion_reward = {
 			add_opinion_modifier = { target = USA modifier = bra_amigo_modifier }
 			add_opinion_modifier = { target = USA modifier = bra_comercio_modifier }
 			USA = { add_opinion_modifier = { target = BRA modifier = bra_amigo_outro_modifier } }
 		}
 	}
+	
 	focus = {
 		id = bra_amigo_aliados
 		icon = GFX_goal_support_democracy
@@ -2454,7 +2400,7 @@ focus = {
 
 	focus = {
 		id = bra_transatlantico
-		icon = GFX_goal_generic_major_alliance
+		icon = GFX_goal_generic_defence
 		prerequisite = { focus = bra_amigo_eua }
 		mutually_exclusive = { focus = bra_amigo_aliados }
 		mutually_exclusive = { focus = bra_mercosul_focus }
@@ -2469,7 +2415,7 @@ focus = {
 				POR = { exists = yes is_subject = no }
 			}
 		}
-		available = { has_government = neutrality is_in_faction = no }
+		available = { has_government = neutrality }
 		ai_will_do = {
 			factor = 0
 		}
@@ -2479,9 +2425,9 @@ focus = {
 			}
 			create_faction = "Transatlantic Pact"
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 	}
-	
+
 	focus = {
 		id = bra_amigo_uk
 		icon = GFX_goal_generic_trade
@@ -2495,7 +2441,7 @@ focus = {
 		cost = 5
 		completion_reward = {
 			add_political_power = 75
-			every_other_country = { # RAJ SAF AST NZL CAN MAL
+			every_other_country = {
 				limit = {
 					is_in_faction_with = ENG
 					OR = {
@@ -2517,10 +2463,10 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 	}
-
+	
 	focus = {
 		id = bra_liga_nacoes
-		icon = GFX_allies
+		icon = GFX_goal_generic_major_alliance
 		prerequisite = { focus = bra_amigo_uk }
 		relative_position_id = bra_amigo_uk
 		x = 0
@@ -2541,10 +2487,6 @@ focus = {
 				is_faction_leader = yes
 				is_major = yes
 				has_government = democratic
-				has_opinion = {
-					target = ROOT
-					value > -11
-				}					
 			}
 		}
 		completion_reward = {
@@ -2572,7 +2514,6 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE }
 	}
 
 	focus = {
@@ -2597,7 +2538,7 @@ focus = {
 			custom_effect_tooltip = bra_mercosul_militar_tooltip
 			
 			set_rule = { can_create_factions = yes }
-			create_faction = "DefenSul"
+			create_faction = "MERCOSUL"
 			
 			every_other_country = {
 				limit = {
@@ -2608,9 +2549,9 @@ focus = {
 				country_event = { days = 1 id = bra.6 }
 			}
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 	}
-
+	
 	focus = {
 		id = bra_mercosul_expansao_focus
 		icon = GFX_goal_generic_occupy_states_ongoing_war
@@ -2623,116 +2564,41 @@ focus = {
 		}
 		cost = 5
 		completion_reward = {
-			custom_effect_tooltip = BRA_champions_of_democracy_tooltip
-			hidden_effect = {
-				every_other_country = {
-					limit = { capital_scope = { is_on_continent = south_america } has_government = fascism }
-					USA = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
-					BRA = { create_wargoal = { type = topple_government target = PREV expire = 0 } }
-				}
+			every_other_country = {
+				limit = { capital_scope = { is_on_continent = south_america } has_government = fascism }
+				USA = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
+				BRA = { create_wargoal = { type = topple_government target = PREV expire = 0 } }
 			}
 		}
 	}
 
 	focus = {
 		id = bra_amigo_portugal
-		icon = GFX_focus_generic_befriend_portugal
+		icon = GFX_goal_rhineland
 		prerequisite = { focus = bra_transatlantico }
 		relative_position_id = bra_transatlantico
 		x = 0
 		y = 1
 		cost = 5
-		available = {
-			OR = {
-				is_faction_leader = yes
-				POR ={
-					is_faction_leader = yes
-				}
-			}
-			
-		}
 		bypass = {
-			OR = {
-				NOT = { country_exists = POR }
-				POR = { is_subject = yes }
-				POR = {
-					is_in_faction = yes
-					is_faction_leader = no
-				}
-			}
+			NOT = { country_exists = POR }
 		}
 		completion_reward = {
-			if = {
-				limit = {
-					POR = {
-						is_in_faction = no
-					}
-				}
-				POR = { country_event = { days = 1 id = bra.8 } }
-			}
-			if = {
-				limit = {
-					POR = {
-						is_faction_leader = yes
-						NOT = {
-							has_government = communism
-						}
-					}
-				}
-				every_country = {
-					limit = {
-						OR = {
-							tag = BRA
-							is_in_faction_with = BRA
-						}
-					}
-					POR = {
-						add_to_faction = PREV
-						add_opinion_modifier = { target = PREV modifier = huge_increase }
-					}
-					
-					
-				}
-				
-				hidden_effect = {
-					POR = {
-						save_event_target_as = alliance_inviter					
-						set_country_flag = alliance_inviter@ROOT
-					}
-					
-					BRA = { 
-						set_country_flag = alliance_applicant@ROOT 
-						save_event_target_as = alliance_applicant
-					}
-					
-					news_event = { id = r56i.event.16 hours = 12 }
-				}					
-				
-			}			
-		
+			POR = { country_event = { days = 1 id = bra.8 } }
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE }
 	}
 	
 	focus = {
 		id = bra_amigo_argentina
-		icon = GFX_goal_CHL_alliance_with_the_argentinians
+		icon = GFX_goal_molotov_ribbentrop_pact
 		prerequisite = { focus = bra_amigo_portugal }
 		relative_position_id = bra_amigo_portugal
 		x = 0
 		y = 1
 		cost = 5
-		available = {
-			country_exists = ARG
-			ARG = { 
-				is_subject = no 
-				is_in_faction = no
-			}
-		}
 		completion_reward = {
 			ARG = { country_event = { days = 1 id = bra.8 } }
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE }
 	}
 
 	focus = {
@@ -2745,9 +2611,9 @@ focus = {
 		x = 4
 		y = 1
 		ai_will_do = {
-			factor = 60
+			factor = 1
 			modifier = {
-				has_country_leader = { name = "Getúlio Vargas" ruling_only = yes }
+				has_government = neutrality
 				factor = 0
 			}
 		}
@@ -2777,97 +2643,37 @@ focus = {
 			}
 		}
 	}
-	focus = {
-		id = BRA_take_uruguay
-		icon = GFX_goal_generic_attack_uruguay
-		prerequisite = { focus = bra_inimigo_eua }
 
-		relative_position_id = bra_inimigo_eua
-		x = 6
-		y = 1
-		cost = 5
-		available = {
-			OR = {
-				has_government = fascism
-				has_country_leader = { name = "Pedro III" ruling_only = yes }
-			}
-			
-		}
-		ai_will_do = {
-			factor = 60
-			modifier = {
-				factor = 0
-				NOT = {
-					is_in_faction = yes
-					URG = {
-						is_in_faction = yes
-					}
-				}
-			}
-		}
-		completion_reward = {
-			add_state_claim = 300 #Uruguai
-			300 = {
-				OWNER = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							expire = 0
-							type = take_state_focus
-							generator = { 300 }
-						}
-						add_ai_strategy = {
-							type = conquer
-							id = PREV
-							value = 200
-						}
-					}
-				}
-			}
-			unlock_decision_tooltip = BRA_integrate_uruguay			
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-	}
 	focus = {
 		id = bra_amigo_urss
 		icon = GFX_focus_chi_mission_to_the_soviet_union
 		prerequisite = { focus = bra_inimigo_eua }
 		mutually_exclusive = { focus = bra_amigo_alemanha }
 		mutually_exclusive = { focus = bra_sem_urss }
+		available = { has_government = communism }
 		relative_position_id = bra_inimigo_eua
 		x = -1
 		y = 1
 		cost = 5
 
 		available = {
-			is_subject = no
-			is_in_faction = no
-			OR = {
-				communism > 0.5
-				has_government = communism
-			}
 			OR = {
 				SOV = {
 					NOT = { has_war_with = ROOT }
 					has_government = communism
 					has_capitulated = no
 					is_faction_leader = yes
-					has_opinion = {
-						target = ROOT
-						value > -11
-					}						
 				}
 				any_other_country = {
 					is_major = yes
 					has_government = communism
 					is_faction_leader = yes
 					NOT = { has_war_with = ROOT }
-					has_opinion = {
-						target = ROOT
-						value > -11
-					}						
 				}
 			}
+			is_subject = no
+			is_in_faction = no
+			communism > 0.5
 		}
 
 		completion_reward = {
@@ -2891,8 +2697,8 @@ focus = {
 				add_opinion_modifier = { target = SOV modifier = bra_comercio_modifier }
 				add_opinion_modifier = { target = SOV modifier = bra_amigo_modifier }
 				SOV = { add_opinion_modifier = { target = BRA modifier = bra_amigo_outro_modifier } }
+				
 			}
-
 			else = {
 				get_best_alliance_match_communism_effect = yes
 				var:best_leader = {
@@ -2900,7 +2706,6 @@ focus = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
 	}
 
 	focus = {
@@ -2914,9 +2719,6 @@ focus = {
 		x = 1
 		y = 1
 		cost = 5
-		ai_will_do = {
-			factor = 100 #if we commie rush this
-		}
 		completion_reward = {
 			if = {
 				limit = {
@@ -2943,9 +2745,6 @@ focus = {
 							NOT = { is_in_faction = yes }
 						}
 					}
-					PAR = {
-						country_event = { id = generic.5 hours = 24 }
-					}
 					add_to_faction = PAR
 				}
 			}
@@ -2954,22 +2753,19 @@ focus = {
 			add_opinion_modifier = { target = SOV modifier = bra_inimigo_modifier }
 			SOV = { add_opinion_modifier = { target = BRA modifier = bra_inimigo_outro_modifier } }
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 	}
-
+	
 	focus = {
 		id = bra_pan_americano
 		icon = GFX_goal_CHL_liberate_south_america
 		prerequisite = { focus = bra_sem_urss focus = bra_amigo_urss }
 		available = { has_government = communism }
 		relative_position_id = bra_amigo_urss
-		ai_will_do = {
-			factor = 0.1
-		}
 		bypass = {
 			OR = {
 				AND = {
-					ARG = { r56_script_standard_bypass = yes }
+				 	ARG = { r56_script_standard_bypass = yes }
 					URG = { r56_script_standard_bypass = yes }
 				}
 				300 = { is_owned_by = BRA }
@@ -3018,34 +2814,6 @@ focus = {
 		}
 	}
 	focus = {
-		id = BRA_ideological_propaganda
-		icon = GFX_focus_propaganda_soviet
-		prerequisite = { focus = bra_foro_de_sao_paulo_focus }
-		x = 1
-		y = 1
-		relative_position_id = bra_foro_de_sao_paulo_focus
-
-		cost = 5
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		allow_branch = {
-			has_dlc = "La Resistance"
-		}
-
-		available = {
-			has_intelligence_agency = yes
-		}
-
-		completion_reward = {
-			upgrade_intelligence_agency = upgrade_psycho_warfare
-			add_ideas = r56_clandestine_propaganda_techniques
-		}
-		search_filters = { FOCUS_FILTER_ESPIONAGE }
-	}
-	focus = {
 		id = bra_cuba_rev
 		icon = GFX_goal_generic_war_with_comintern
 		prerequisite = { focus = bra_foro_de_sao_paulo_focus }
@@ -3068,7 +2836,7 @@ focus = {
 			CUB = { start_civil_war = { ideology = communism size = 0.75 } }
 		}
 	}
-
+	
 	focus = {
 		id = bra_amigo_alemanha
 		icon = GFX_goal_support_fascism
@@ -3086,7 +2854,7 @@ focus = {
 			GER = { add_opinion_modifier = { target = BRA modifier = bra_amigo_outro_modifier } }
 		}
 	}
-	
+
 	focus = {
 		id = bra_eixo
 		icon = GFX_focus_chi_mission_to_germany
@@ -3102,17 +2870,14 @@ focus = {
 				is_faction_leader = yes
 			}
 		}
-		bypass = { is_in_faction_with = GER }
-
 		x = 1
 		y = 1
 		cost = 5
 		completion_reward = {
 			GER = { country_event = { days = 1 id = bra.7 } }
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
 	}
-
+	
 	focus = {
 		id = bra_sem_eixo
 		icon = GFX_goal_generic_more_territorial_claims
@@ -3158,7 +2923,7 @@ focus = {
 			#unlock_decision_category_tooltip = BRA_uiracu
 			#unlock_decision_tooltip = { decision = bra_inv_arg show_effect_tooltip = yes }
 		}
-		search_filters = { FOCUS_FILTER_ALLIANCE FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 	}
 	focus = {
 		id = bra_strike_dem_focus
@@ -3174,9 +2939,6 @@ focus = {
 			every_other_country = {
 				limit = {
 					capital_scope = { is_on_continent = south_america }
-					NOT = {
-						has_war_with = ROOT
-					}
 				}
 				add_timed_idea = { idea = nationalism days = 365 }
 			}
@@ -3197,7 +2959,7 @@ focus = {
 		bypass = {
 			OR = {
 				AND = {
-					PAR = { r56_script_standard_bypass = yes }
+				 	PAR = { r56_script_standard_bypass = yes }
 					COL = { r56_script_standard_bypass = yes }
 				}
 				494 = { is_owned_by = BRA }
@@ -3244,8 +3006,8 @@ focus = {
 		id = bra_basta
 		icon = GFX_focus_generic_strike_at_democracy3
 		prerequisite = {
-			focus = bra_mex_rev
-			focus = bra_cuba_rev
+		focus = bra_mex_rev
+		focus = bra_cuba_rev
 		}
 		relative_position_id = bra_mex_rev
 		x = -2
@@ -3267,7 +3029,6 @@ focus = {
 		cost = 5
 		completion_reward = {
 			add_ideas = bra_ciclocana_idea
-			
 			if = {
 				limit = {
 					has_idea = bra_industrial_elite
@@ -3286,6 +3047,7 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 	}
+
 	focus = {
 		id = bra_ciclosoja
 		icon = GFX_goal_generic_production2
@@ -3315,7 +3077,6 @@ focus = {
 			}
 		}
 	}
-
 	focus = {
 		id = bra_territoriosfederais
 		icon = GFX_goal_generic_position_armies
